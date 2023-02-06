@@ -29,5 +29,5 @@ In this section you can find your some solution for leetcode questions.
 
 | Topics |  Lessons | Leetcode solutions | 
 | --- | --- |----|
-|Leetcode daily chalanges| Solutions for daily leetcode chanlanges | [Daily](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Daily)|
+|Leetcode daily challanges| Solutions for daily leetcode chanllanges | [Daily](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Daily)|
 |Trees|Tree Data structure, Binary search Tree, BFS and DFS algorithms...|[Easy](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Trees/Easy), [Medeum](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Trees/Medium), [Hard](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Trees/Hard)|
