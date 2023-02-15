@@ -1,0 +1,29 @@
+class Solution {
+    int n = 0;
+
+    public int pseudoPalindromicPaths (TreeNode root) {
+        int[] table = new int[10];
+        drawPath(root, table);
+        return n;
+    }
+
+    private void drawPath(TreeNode root, int[] table){
+        if(root == null) return;
+            table[root.val]++;
+            drawPath(root.left, table);
+            drawPath(root.right, table); 
+
+            if(root.left == null && root.right == null && check(table)) n++;
+
+            table[root.val]--;
+    }
+
+    private boolean check(int[] nums){
+        int odd = 0;
+        for(int i = 0; i < 10; i++){
+            if(nums[i] % 2 == 1) odd++;
+        }
+
+        return odd == 1 || odd == 0;
+    }
+}
