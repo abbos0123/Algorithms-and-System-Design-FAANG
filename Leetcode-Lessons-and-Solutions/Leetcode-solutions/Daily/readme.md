@@ -1,1 +1,1 @@
-## This forder contains all solutions of daily challanges in Leetcode Platform.
+## This folder contains all solutions of daily challanges in Leetcode Platform.
