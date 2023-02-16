@@ -1,0 +1,15 @@
+class Solution {
+    public int pairSum(ListNode head) {
+        Deque<Integer> q = new LinkedList();
+        int max = 0;
+
+        while(head != null){
+            q.add(head.val);
+            head = head.next;
+        }
+       while(!q.isEmpty())
+           max = Math.max(max, q.removeFirst() + q.removeLast());
+       
+        return max;
+    }
+}
