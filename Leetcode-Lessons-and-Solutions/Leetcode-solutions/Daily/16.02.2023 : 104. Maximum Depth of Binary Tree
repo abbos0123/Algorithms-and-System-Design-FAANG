@@ -1,0 +1,15 @@
+class Solution {
+    int max = 0;
+    public int maxDepth(TreeNode root) {
+        return maxDepthHelper(root, 0);
+    }
+    
+    private int maxDepthHelper(TreeNode root, int level){
+        if(root == null) return level;
+
+        maxDepthHelper(root.left, level + 1);
+        maxDepthHelper(root.right, level + 1);
+        max = Math.max(level+1, max);
+        return max;
+    }
+}
