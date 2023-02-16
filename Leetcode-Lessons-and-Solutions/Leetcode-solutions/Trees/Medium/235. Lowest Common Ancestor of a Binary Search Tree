@@ -1,0 +1,52 @@
+Link: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/submissions/898909779/
+
+Solution 1: 
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+      if(p.val<root.val && q.val<root.val)
+				  return lowestCommonAncestor(root.left, p, q);
+	    if(p.val>root.val && q.val>root.val)
+				  return lowestCommonAncestor(root.right, p, q);
+			return root;
+    }
+}
+
+Solution 2: 
+
+class Solution {
+    private boolean find = true;
+    private TreeNode res= null;
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null) return res;
+        res = root;
+        check(root, p.val, q.val);
+
+        return res;
+    }
+
+    private void check(TreeNode root, int n, int m){
+        if(root == null) return;
+
+        if(isExist(root.left, n) && isExist(root.left, m)){
+            res = root.left;
+        }else if(isExist(root.right, m) && isExist(root.right, n)){
+            res = root.right;
+        }
+
+        check(root.left, n, m);
+        check(root.right, n, m);
+    }
+
+
+    private boolean isExist(TreeNode root, int n){
+        if(root == null) return false;
+
+        if(root.val == n) return true;
+
+        return isExist(root.left, n) || isExist(root.right, n);
+    }
+}
+
+
