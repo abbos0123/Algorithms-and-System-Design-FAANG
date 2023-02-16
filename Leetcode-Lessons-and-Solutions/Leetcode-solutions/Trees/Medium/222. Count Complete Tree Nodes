@@ -1,0 +1,31 @@
+Link: https://leetcode.com/problems/count-complete-tree-nodes/solutions/3191854/java-fastest-solution/
+
+class Solution {
+    int max = 0;
+    int count = 0;
+    boolean b = true;
+    public int countNodes(TreeNode root) {
+        if(root == null) return 0;
+        max = 0;
+        count = 0;
+        helper(root, 0);
+        return  (int)Math.pow(2, max + 2) - count-1;
+    }
+
+    private void helper(TreeNode root, int level){
+        if(root == null) return;
+
+        if(b)
+        max = Math.max(level, max);
+        helper(root.right, level + 1);
+        b = false;
+        if(level > max){
+            return;
+        }else if(level == max){
+            if(root.left == null) count += 2;
+            else if(root.right == null) count += 1;
+        }
+
+        helper(root.left, level + 1);
+    }
+}
