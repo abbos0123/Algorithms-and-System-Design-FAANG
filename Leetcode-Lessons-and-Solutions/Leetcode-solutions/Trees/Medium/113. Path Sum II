@@ -1,0 +1,28 @@
+class Solution {
+    private List<List<Integer>> list;
+    private int sum = 0;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        list = new ArrayList();
+        sum = 0;
+
+        leafPath(root, new LinkedList<Integer>(), targetSum);
+
+        return list;
+    }
+
+    private void leafPath(TreeNode root, List<Integer> paths, int target){
+        if(root == null) return;
+
+        sum += root.val;
+        paths.add(root.val);
+
+        if(root.left == null && root.right == null && target == sum)
+            list.add(new ArrayList<Integer>(paths));
+        
+        leafPath(root.left, paths, target);
+        leafPath(root.right, paths, target);
+
+        sum -= root.val;
+        paths.remove(paths.size() - 1);
+    }
+}
