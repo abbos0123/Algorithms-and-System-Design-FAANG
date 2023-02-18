@@ -1,0 +1,52 @@
+Link: 
+
+class Solution {
+    Map<Integer, Integer> map;
+    private boolean result;
+   
+    public boolean isEvenOddTree(TreeNode root) {
+       map = new HashMap();
+       result = true;
+       treeRead(root, 0);
+       return result; 
+    }
+
+    private void treeRead(TreeNode root, int level){
+        if(root == null || ! result) return;
+
+        treeRead(root.left, level + 1);
+        
+        if(level % 2 == 0){
+            if(root.val % 2 == 0){
+                result = false;
+                return;
+            }else if(map.get(level) == null){
+                map.put(level, root.val);
+            }else{
+                if(map.get(level) < root.val)
+                   map.put(level, root.val);
+                else {
+                    result = false;
+                    return;
+                }
+            }
+        }else{
+             if(root.val % 2 == 1){
+                result = false;
+                return;
+            }else if(map.get(level) == null){
+                 map.put(level, root.val);
+            }else{
+                if(map.get(level) > root.val)
+                   map.put(level, root.val);
+                else {
+                    result = false;
+                    return;
+                }
+            }
+        }
+
+        treeRead(root.right, level + 1);
+    }
+
+}
