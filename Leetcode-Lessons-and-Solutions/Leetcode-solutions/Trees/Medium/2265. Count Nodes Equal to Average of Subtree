@@ -6,4 +6,22 @@ class Solution {
         helper(root);
         return count;
     }
+
+    private void helper(TreeNode root){
+        if(root == null) return;
+        tem = 0;
+        int sum = sumNode(root);
+        if(sum / tem == root.val) count++;
+        
+        helper(root.left);
+        helper(root.right);
+    }
+
+    private int sumNode(TreeNode root){
+        if(root == null) return 0;
+        tem++;
+        return sumNode(root.left) + sumNode(root.right) + root.val;
+    }
+
+
 }
