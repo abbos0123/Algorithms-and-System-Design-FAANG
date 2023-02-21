@@ -1,0 +1,41 @@
+/**
+ * https://leetcode.com/problems/path-sum/description/
+ -------------------------------------------------------
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int target;
+    private boolean result;
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        result=false;
+        target = targetSum;
+
+        sumPath(root, 0);
+        return result;
+    }
+
+    public void sumPath(TreeNode root, int sum){
+
+       if(root == null) return;
+       sum+=root.val;
+       if(root.left==null && root.right==null){
+           if(sum==target) result = true;     
+       } 
+       
+        sumPath(root.left, sum);                
+        sumPath(root.right, sum);
+        sum-=root.val;
+    }
+}
