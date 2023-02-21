@@ -1,0 +1,22 @@
+Link: https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/description/
+
+class Solution {
+    public int findSecondMinimumValue(TreeNode root) {
+       Set<Integer> set = new HashSet();
+       long min = Long.MAX_VALUE;
+     
+       helper(root, set);
+
+       for(int k : set)
+         if( k > root.val && k < min) min = k;
+        
+       return min < Long.MAX_VALUE ? (int)min : -1;
+    }
+
+    private void helper(TreeNode root, Set<Integer> set){
+      if(root == null) return;
+      set.add(root.val);
+      helper(root.left, set);
+      helper(root.right, set); 
+    }
+}
