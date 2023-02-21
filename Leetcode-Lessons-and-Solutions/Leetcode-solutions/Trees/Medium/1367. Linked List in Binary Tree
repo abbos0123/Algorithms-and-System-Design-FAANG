@@ -1,0 +1,50 @@
+Link: https://leetcode.com/problems/linked-list-in-binary-tree/description/
+
+class Solution {
+    public boolean isSubPath(ListNode head, TreeNode root) {
+        List<TreeNode> list = new ArrayList();
+        helper(root, head.val, list);
+
+        for(int i = 0; i < list.size(); i++){
+            System.out.println(list.get(i).val);
+            if(isSame(list.get(i), head))
+              return true;
+              
+        }
+
+        return false;
+    }
+
+    private void helper(TreeNode root, int val, List<TreeNode> list){
+        if(root == null) return;
+
+        if(root.val == val) list.add(root);
+
+        helper(root.left, val, list);
+        helper(root.right, val, list);
+    }
+
+    private boolean isSame(TreeNode root, ListNode head){
+        if(head == null) return true;
+
+        if(root == null && head != null ||
+           root.val != head.val ) return false;
+
+        if(root.left != null && head.next != null && head.next.val ==  root.left.val &&
+           root.right != null && head.next != null && head.next.val ==  root.right.val){
+               return isSame(root.left, head.next) || isSame(root.right, head.next);
+           }
+        
+        if(root.left != null && head.next != null && head.next.val ==  root.left.val){
+            return isSame(root.left, head.next);
+        }
+
+        if(root.right != null && head.next != null && head.next.val ==  root.right.val){
+            return isSame(root.right, head.next);
+        }
+
+        if(root.val == head.val && head.next == null) return true;
+
+        return false;
+    }
+}
