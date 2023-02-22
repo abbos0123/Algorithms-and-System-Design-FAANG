@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isValidSerialization(String preorder) {
+        String[] array = preorder.split(",");
+
+        int n = 1;
+
+        for(String node : array){
+            n--;
+            if(n < 0) return false;
+            if(!node.equals("#")) n += 2;
+        }
+
+        return n==0;
+    }
+}
