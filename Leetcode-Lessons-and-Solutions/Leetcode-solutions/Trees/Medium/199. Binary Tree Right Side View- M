@@ -1,0 +1,43 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    Map<Integer, Integer> table;
+
+    public List<Integer> rightSideView(TreeNode root) {
+        table = new HashMap<Integer, Integer>();
+        findTRS(root, 0);
+        List<Integer> result = new ArrayList<>();
+        List<Integer> keyList = new ArrayList<>(table.keySet());
+        
+        Collections.sort(keyList);
+
+        for(int key: keyList){
+            result.add(table.get(key));
+        }
+
+        return result;
+    }
+
+    public void findTRS(TreeNode root, int level){
+        if(root == null) return; 
+
+        findTRS(root.right, level+1);
+        if(table.get(level)==null) {
+            table.put(level, root.val);
+        }
+        findTRS(root.left, level+1);
+    }
+}
