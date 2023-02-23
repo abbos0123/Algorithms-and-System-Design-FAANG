@@ -1,0 +1,67 @@
+Link: https://leetcode.com/problems/check-completeness-of-a-binary-tree/description/
+
+Algorithm
+Using an inorder tarversal helps us to travers each level of tree from left most to right. If we collect each level of tree to list with using inorder traversal, we may identify if this tree is complete binary tree.
+
+read binary tree using inorder traversal and add each element to corresponding list of map.
+if we have n lists, this means all lists exept last should not contain null value.
+if list [0, i-1] contains null we should return false bacause this breaks rule.
+check list of deepest level. if list ends whith only null values it is ok. but if after some null value, if there is not null valuse (real node) this is alse breaks rule. In such situation false should be returned.
+if all conditions is ok, then return true.
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+Code
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int deepth = -1;
+    private Map<Integer, List<TreeNode>> table;
+    public boolean isCompleteTree(TreeNode root) {
+        if(root.left == null && root.right == null) return true;
+        table = new HashMap();
+       
+        readInOrder(root, 0);
+
+        List<Integer> keyList = new ArrayList(table.keySet());
+        Collections.sort(keyList);
+
+        for(int i = 0; i < keyList.size() - 2; i++){
+            List<TreeNode> list0 = table.get(keyList.get(i));
+            for(int j = 0; j < list0.size(); j++)
+              if( list0.get(j) == null) return false;
+        }
+
+        List<TreeNode>  list = table.get(keyList.get(keyList.size()-2));
+       
+        for(int i = 1; i < list.size(); i++)
+          if(list.get(i) != null && list.get(i-1) == null)
+            return false;
+
+        return true;
+    }
+
+    private void readInOrder(TreeNode root, int level){
+        if(root != null)
+           readInOrder(root.left, level+1);
+        
+        table.putIfAbsent(level, new ArrayList());
+        table.get(level).add(root);
+
+        if(root != null)
+        readInOrder(root.right, level+1);
+    }
+ }
