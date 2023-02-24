@@ -1,0 +1,40 @@
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+Code
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void flatten(TreeNode root) {
+        List<TreeNode> list = new LinkedList();  
+        int n;
+
+        helper(root, list);
+        n = list.size();
+
+        for(int i = 0; i < n-1; i++){
+            list.get(i).left = null;
+            list.get(i).right = list.get(i+1);
+        }
+    }
+
+    private void helper(TreeNode root, List<TreeNode> list){
+        if(root == null) return;
+        list.add(root);
+        helper(root.left, list);
+        helper(root.right, list);
+    }
+}
