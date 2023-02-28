@@ -1,0 +1,31 @@
+Complexity
+  1. Time complexity: O(N)
+  2. Space complexity: O(N)
+
+JAVA
+
+class Solution {
+    int max = 100001;
+
+    public ListNode removeNodes(ListNode head) {
+        ListNode h = helper(head);
+        if(h == null) return null;
+        else if(h.val < max) return head.next;
+        else return h;
+    }
+
+    private ListNode helper(ListNode head){
+        if(head == null) return null;
+        
+        helper(head.next);
+
+        if(head.next == null)
+            max = head.val;
+        else if(head.next.val < max)
+            head.next= head.next.next;
+        else
+            max = head.next.val;
+
+        return head;
+    }
+}
