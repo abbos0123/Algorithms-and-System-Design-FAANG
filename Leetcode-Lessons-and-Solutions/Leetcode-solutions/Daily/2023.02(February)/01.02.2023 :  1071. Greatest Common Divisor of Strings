@@ -1,0 +1,28 @@
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+        int n1 = str1.length();
+        int n2 = str2.length();
+        int len = Math.min(n1, n2);
+
+        for(int i = len; i > 0; i--){
+            if(n1 % i != 0 || n2 % i != 0) continue;
+
+            if(checkString(str1.substring(0, i), str1) 
+               && checkString(str1.substring(0, i), str2))
+               return str1.substring(0, i);
+        }
+
+        return "";
+    }
+
+    private boolean checkString(String pref, String s){
+        int k =  pref.length();
+        int n = s.length() / k;
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < n; i++)
+        sb.append(pref);
+
+        return sb.toString().equals(s);
+    }
+}
