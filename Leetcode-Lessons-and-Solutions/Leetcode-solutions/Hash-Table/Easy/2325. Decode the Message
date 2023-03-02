@@ -1,0 +1,21 @@
+class Solution {
+    public String decodeMessage(String key, String message) {
+        Map<Character, Character> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        char ch = 'a';
+        int n = message.length();
+        char[] letters = key.toCharArray(),
+        messageChar = message.toCharArray();
+              
+        for(char c: letters)
+            if(map.get(c) == null && c != ' ')
+                map.put(c, ch++);
+        map.put(' ', ' ');
+        
+        for(int i = 0; i < n; i++)
+           messageChar[i] = map.get(messageChar[i]);
+        
+        
+        return new String(messageChar);
+    }
+}
