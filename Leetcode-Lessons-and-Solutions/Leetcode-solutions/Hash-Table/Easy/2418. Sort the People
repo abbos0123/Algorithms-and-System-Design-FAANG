@@ -1,0 +1,44 @@
+class Solution {
+  int partition(String[] people, int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] >= pivot) {
+                i++;
+
+                int tem = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tem;
+
+                String tem2 = people[i];
+                people[i] = people[j];
+                people[j] = tem2;
+            }
+        }
+
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        String temp2 = people[i + 1];
+        people[i + 1] = people[high];
+        people[high] = temp2;
+
+        return i + 1;
+    }
+
+    private void sort(String[] people, int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(people, arr, low, high);
+            
+            sort(people, arr,low, pi-1);
+            sort(people, arr,pi+1, high);
+        }
+    }
+
+    public String[] sortPeople(String[] names, int[] heights) {
+        sort(names, heights, 0, heights.length-1);
+        return names;
+    }
+}
