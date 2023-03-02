@@ -1,0 +1,15 @@
+class Solution {
+    public int arithmeticTriplets(int[] nums, int diff) {
+        int n = nums.length, count = 0;
+        boolean[] table = new boolean[201];
+     
+        for(int i = 0; i < n; i++)
+            table[nums[i]] = true;   
+       
+        for(int i = 0; i < n; i++)
+            if(nums[i] + 2 * diff < 201 && table[nums[i] + diff] && table[nums[i] + 2 * diff])
+                count++;
+        
+        return count;
+    }
+}
