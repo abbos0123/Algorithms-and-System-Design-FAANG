@@ -1,0 +1,19 @@
+class Solution {
+    public boolean checkDistances(String s, int[] distance) {
+        int n = s.length();
+        Map<Character, List<Integer>> map = new HashMap();
+        
+        for(int i = 0; i < n; i++){
+            char c = s.charAt(i);
+            map.putIfAbsent(c, new ArrayList<>());
+            map.get(c).add(i);
+        }
+        
+        for(Character key: map.keySet()){
+            if(map.get(key).get(1) - map.get(key).get(0) - 1 != distance[key-'a'])
+                return false;
+        }
+        
+        return true;
+    }
+}
