@@ -1,0 +1,19 @@
+class Solution {
+    public int canBeTypedWords(String text, String brokenLetters) {
+        int count = 0, n = text.length()+1; 
+        
+        text = text + " ";
+        for(int i = 0; i < n; i++){
+            char c = text.charAt(i);
+            if(c == ' '){
+               count ++;
+               continue;
+            }else if(brokenLetters.contains("" + c)){
+                while( i < n && text.charAt(i) != ' ')
+                    i++;
+            }
+        }  
+        
+        return count;
+    }
+}
