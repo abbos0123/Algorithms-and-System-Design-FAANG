@@ -1,0 +1,35 @@
+class Solution {
+     public String[] findWords(String[] words) {
+        ArrayList<String> list = new ArrayList<>();
+        var row1 = "qwertyuiop";
+        var row2 = "asdfghjkl";
+        var row3 = "zxcvbnm";
+
+        for (String s : words) {
+            var word = s.toLowerCase();
+
+            if (row1.contains(word.charAt(0) + "")) {
+                if (isValid(word, row1))
+                    list.add(s);
+
+            } else if (row2.contains(word.charAt(0) + "")) {
+                if (isValid(word, row2))
+                    list.add(s);
+
+            } else if (row3.contains(word.charAt(0) + "")) {
+                if (isValid(word, row3))
+                    list.add(s);
+            }
+        }
+        return list.toArray(new String[0]);
+    }
+
+    private boolean isValid(String word, String row) {
+        for (int i = 1; i < word.length(); i++) {
+            if (!row.contains(word.charAt(i) + ""))
+                return false;
+        }
+        
+        return true;
+    }
+}
