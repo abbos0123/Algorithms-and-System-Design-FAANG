@@ -1,0 +1,17 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int k: nums){
+
+            if(!map.keySet().contains(k))
+                map.putIfAbsent(k, 1);
+            else
+                map.put(k, map.get(k) + 1);
+        }
+        for (int i: map.keySet()){
+            if (map.get(i) != 1)
+                return true;
+        }
+        return false;
+    }
+}
