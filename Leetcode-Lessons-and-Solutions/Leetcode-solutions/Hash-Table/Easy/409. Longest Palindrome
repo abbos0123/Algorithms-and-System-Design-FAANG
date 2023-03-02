@@ -1,0 +1,28 @@
+class Solution {
+   public int longestPalindrome(String s) {
+      int[] lettersLow = new int[26];
+      int[] lettersHigh = new int[26];
+      int res = 0;
+       
+       for(char c : s.toCharArray())
+           if(c - 'a' >= 0 && c - 'a' < 26)
+               lettersLow[c-'a']++;
+           else
+               lettersHigh[c-'A']++;
+    
+       boolean bo = false;  
+       for(int i = 0; i < 26; i++){
+           res += lettersLow[i] - lettersLow[i] % 2;
+           res += lettersHigh[i] - lettersHigh[i] % 2;
+           
+           if(lettersLow[i] % 2 == 1 || lettersHigh[i] % 2 == 1){
+               bo = true;
+           }
+       }
+       
+       if(bo)
+           res++;
+       
+       return res;
+    }
+}
