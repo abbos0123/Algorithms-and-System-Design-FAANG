@@ -1,0 +1,9 @@
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        Set<String> set = new HashSet();
+        int n = paths.size();
+        for(int i = 0; i < n; i++) set.add(paths.get(i).get(1));
+        for(int i = 0; i < n; i++) set.remove(paths.get(i).get(0));
+        return set.iterator().next();
+    }
+}
