@@ -1,0 +1,19 @@
+class Solution {
+       public int numUniqueEmails(String[] emails) {
+        String[] strings;
+        String local;
+        String localLast;
+
+        for (int i = 0; i < emails.length ; i++) {
+            strings = emails[i].split("@");
+            if (strings[0].contains("+"))
+                local = strings[0].substring(0, strings[0].indexOf("+"));
+            else
+                local = strings[0];
+
+            localLast = String.join("", local.split("\\."));
+            emails[i] = (localLast + "@" + strings[1]);
+        }
+        return (int)Arrays.stream(emails).distinct().count();
+    }
+}
