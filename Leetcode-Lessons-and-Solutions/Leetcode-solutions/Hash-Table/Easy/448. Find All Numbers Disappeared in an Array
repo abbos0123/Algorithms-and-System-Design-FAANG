@@ -1,0 +1,29 @@
+class Solution {
+      public List<Integer> findDisappearedNumbers(int[] nums) {
+        var list = new ArrayList<Integer>();
+        int i = 0;
+        int j = 1;
+
+        Arrays.sort(nums);
+
+        if (nums.length == 1)
+            return list;
+
+        addNumberInInterval(list, 1, nums[0]);
+        while (j < nums.length) {
+            if (nums[j] - nums[i] > 1)
+                addNumberInInterval(list, nums[i] + 1, nums[j]);
+
+            j++;
+            i++;
+        }
+        addNumberInInterval(list, nums[nums.length - 1] + 1, nums.length + 1);
+
+        return list;
+    }
+
+    private void addNumberInInterval(List<Integer> list, int left, int right) {
+        for (int k = left; k < right; k++)
+            list.add(k);
+    }
+}
