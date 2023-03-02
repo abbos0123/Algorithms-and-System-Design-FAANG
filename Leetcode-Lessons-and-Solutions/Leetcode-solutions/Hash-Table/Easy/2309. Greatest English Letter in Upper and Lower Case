@@ -1,0 +1,20 @@
+class Solution {
+    public String greatestLetter(String s) {
+        int[] lLetters = new int[26];
+        int[] uLetters = new int[26];
+        int n = s.length(); 
+        
+        for(int i = 0; i < n; i++){
+            if( s.charAt(i)-'a' >= 0 && s.charAt(i)-'a' <= 25)
+                lLetters[s.charAt(i) -'a']++;
+            else 
+                uLetters[s.charAt(i) -'A']++;
+        }
+        
+        for(int i = 25; i >= 0; i--)
+            if(uLetters[i] > 0 && lLetters[i] > 0)
+                return String.valueOf((char)('A'+ i));
+        
+        return "";
+    }
+}
