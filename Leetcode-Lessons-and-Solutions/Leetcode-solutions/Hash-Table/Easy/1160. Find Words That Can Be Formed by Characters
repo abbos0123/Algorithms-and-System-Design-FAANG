@@ -1,0 +1,31 @@
+class Solution {
+     public int countCharacters(String[] words, String chars) {
+        int sum = 0;
+        int[] array = new int[26];
+
+        for (int i = 0; i < chars.length(); i++) {
+            array[chars.charAt(i) - 'a']++;
+        }
+
+        for (int i =0; i < words.length; i++) {
+            int[] temArray = new int[26];
+            var isValidWord= true;
+
+            for (int j = 0; j < words[i].length(); j++) {
+                temArray[words[i].charAt(j) - 'a']++;
+            }
+
+            for (int k = 0; k < 26; k++ ){
+                if (temArray[k] > array[k]){
+                    isValidWord = false;
+                    break;
+                }
+            }
+
+            if (isValidWord)
+                sum += words[i].length();
+        }
+
+        return sum;
+    }
+}
