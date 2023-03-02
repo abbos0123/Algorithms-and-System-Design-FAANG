@@ -1,0 +1,11 @@
+class Solution {
+    public boolean areOccurrencesEqual(String s) {
+        int[] letters = new int[26];
+        int n = s.length();
+        for(int i = 0; i < n; i++)
+            letters[s.charAt(i) - 'a']++;
+        for(int i = 1; i < n; i++)
+            if(letters[s.charAt(i)-'a'] != letters[s.charAt(i-1)-'a']) return false;
+        return true;
+    }
+}
