@@ -1,0 +1,15 @@
+class Solution {
+        public int findFinalValue(int[] nums, int original) {
+        Arrays.sort(nums);
+
+        while (original <= nums[nums.length - 1]) {
+            int i = Arrays.binarySearch(nums, original);
+            if (i >= 0)
+                original *= 2;
+            else
+                return original;
+        }
+
+        return original;
+    }
+}
