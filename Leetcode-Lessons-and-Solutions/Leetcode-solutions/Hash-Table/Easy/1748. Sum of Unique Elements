@@ -1,0 +1,34 @@
+Intuition
+There are several ways to solve this problem. For instanse if we use double loop to identify wheather this element is unique or not, time complexity of algorithm would be O(n ^ 2). This is not very efficient. That is why we may use extra space to record, how many times the element appaired in the array.
+According to problem paramets, there are maximum 100 elements in the input array. this means, 101 extra space is enough for use to record this element is unique or not. We iterate input array and each time whenever we come across new elements, write this element to our boolean talbe or if it is not first time write false to corresponding element in boolean table.
+
+Approach
+instatate new boolean array for saveing info about elements. index of boolean table is used as current number;
+Iterate each element of array:
+if talbe[n] is null, this means we encounter first time. set true to this index.
+if talbe[n] is false, this means this elements is already exist. we should set false to this index.
+Iterate boolean table and sum all indexs of elements whick its valuse is treu;
+return sum;
+Complexity
+Time complexity: O(n + 100) n is size of input array. We check each element of boolean array. That is why extra 100 is added.
+Space complexity: O(1) always used only 101 extra space.
+Code
+class Solution {
+    public int sumOfUnique(int[] nums) {
+        Boolean[] table = new Boolean[101];
+        int sum = 0;
+
+        for(int n : nums){
+            if(table[n] == null)
+              table[n] = true;
+            else if(table[n] = true)
+              table[n] = false;
+        }
+
+       for(int i = 0; i < 101; i++)
+           if(table[i] != null && table[i] == true)
+             sum += i;
+
+        return sum;
+    }
+}
