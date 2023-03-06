@@ -1,0 +1,26 @@
+Approach
+we are given array with 2n length. According to properties, 
+all numbers but for one is unique. To solve this, one way is 
+collection data to map. If one number appaires two times in map, 
+this means this number is answer.
+
+Complexity
+  Time complexity: O(k) k is max n;
+  Space complexity: O(n);
+
+Code
+
+class Solution {
+    public int repeatedNTimes(int[] nums) {
+      Map<Integer, Integer> map = new HashMap();
+      int n  = nums.length;
+
+      for(int i = 0; i < n; i++)
+          if(map.get(nums[i]) == null) 
+              map.put(nums[i], 1);
+          else 
+              return nums[i];
+      
+      return -1;  
+    }
+}
