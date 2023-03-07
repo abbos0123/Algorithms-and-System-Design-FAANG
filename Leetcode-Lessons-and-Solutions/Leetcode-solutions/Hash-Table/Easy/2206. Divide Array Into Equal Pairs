@@ -1,0 +1,19 @@
+Approach
+Number of each unique integer elements should be counted. If it is even, this means we can make pairs without any remainding. Otherwise, return false. Because if result is odd, 1 number remains without its pair.
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1) -> you are right we used array that size is 500. But it is constant and that is why, it is O(1) constant space for any incoming array.
+Code
+class Solution {
+    public boolean divideArray(int[] nums) {
+        int[] table = new int[501];
+
+        for(int k : nums) table[k] += 1;
+        
+        for(int i = 0; i < 501; i++)
+          if(table[i] % 2 == 1) return false;    
+
+        return true;
+    }
+}
