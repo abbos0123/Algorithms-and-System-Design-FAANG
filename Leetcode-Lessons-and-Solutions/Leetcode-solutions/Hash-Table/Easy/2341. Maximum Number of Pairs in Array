@@ -1,0 +1,49 @@
+ 
+----------------------Solution 1 -----------------------
+
+class Solution {
+    public int[] numberOfPairs(int[] nums) {
+        Map<Integer, Integer> map = new HashMap();
+        int count = 0, leftover = 0;
+        int[] res = new int[2];
+
+        for(int k : nums)
+            map.put(k, map.getOrDefault(k, 0) + 1);
+        
+
+        for(int key: map.keySet()){
+            count += map.get(key)/2;
+            leftover += map.get(key) % 2;
+        }
+
+        res[0] = count;
+        res[1] = leftover;
+
+        return res;
+    }
+}
+
+-------------------Solution 2 -----------------------
+
+class Solution {
+    public int[] numberOfPairs(int[] nums) {
+        int[] table = new int[101];
+        int count = 0, leftover = 0;
+        int[] res = new int[2];
+
+        for(int k : nums)
+            table[k] += 1;
+        
+
+        for(int i = 0; i < 101; i++){
+            count += table[i]/2;
+            leftover += table[i] % 2;
+        }
+
+        res[0] = count;
+        res[1] = leftover;
+
+        return res;
+    }
+}
+
