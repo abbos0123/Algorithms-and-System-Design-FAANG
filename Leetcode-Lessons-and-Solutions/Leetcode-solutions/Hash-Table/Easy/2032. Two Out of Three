@@ -1,0 +1,30 @@
+----------------------------------COMPLEXITY------------------------------------------
+
+Time complexity: O(n)
+Space complexity: O(n)
+
+------------------------------------CODE----------------------------------------------
+class Solution {
+    public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
+        boolean[] table1 = new boolean[101];
+        boolean[] table2 = new boolean[101];
+        boolean[] table3 = new boolean[101];
+        int n1 = nums1.length, n2 = nums2.length, n3 = nums3.length;
+        List<Integer> list = new LinkedList();
+       
+        for(int i = 0; i <n1; i++)
+           table1[nums1[i]] = true;
+
+        for(int i = 0; i <n2; i++)
+           table2[nums2[i]] = true;
+
+        for(int i = 0; i <n3; i++)
+           table3[nums3[i]] = true;
+
+        for(int i = 1; i < 101; i++)
+            if(table1[i] && table2[i] || table1[i] && table3[i] || table2[i] && table3[i])
+              list.add(i);
+
+        return list;  
+    }
+}
