@@ -1,0 +1,30 @@
+Complexity
+Time complexity: O(n * k) - > n number of all numbers in given interval; k is allnumber of digits af all numbers.
+Space complexity: O(n)
+Code
+class Solution {
+    public int countBalls(int lowLimit, int highLimit) {
+        Map<Integer, Integer> map = new HashMap();
+        int max = 0;
+
+        for(int i = lowLimit; i <= highLimit; i++){
+            int k = sumDigits(i);
+            map.put(k, map.getOrDefault(k, 0) + 1);
+        }
+
+        for(int n : map.keySet())
+            if(map.get(n) > max) max = map.get(n);
+        
+        return max;
+    }
+
+    private int sumDigits(int n){
+        int sum = 0;
+        while(n > 0){
+            sum += n % 10;
+            n /= 10;
+        }
+
+        return sum;
+    }
+}
