@@ -1,0 +1,25 @@
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        int minSpeed = 1, maxSpeed = Integer.MAX_VALUE;
+
+        while(minSpeed < maxSpeed){
+            int mid = minSpeed + (maxSpeed - minSpeed)/2;
+
+            if(isFinish(piles, mid, h))
+                maxSpeed = mid;
+            else
+                minSpeed = mid + 1;   
+        }
+
+        return Math.max(minSpeed, maxSpeed);
+    }
+
+    private boolean isFinish(int[] piles, int k, int h){
+        int n = piles.length;
+        int houre = 0;
+
+        for(int i = 0; i < n; i++)
+            houre += piles[i] % k == 0 ? piles[i] / k : piles[i] / k + 1;
+        return houre <= h;
+    }
+}
