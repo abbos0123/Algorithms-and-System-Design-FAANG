@@ -1,0 +1,29 @@
+
+----------------------------------------------------Approach--------------------------------------------------------------
+Keeping track of existing numbers, help us to solve this problem very easly. We add each number number to hashmap. 
+If map contains that negative sign of number nums[i], we will swap value of max with max value of max and abs(nums[i]). 
+At the end max value will be answer.
+
+---------------------------------------------------Complexity-------------------------------------------------------------
+
+Time complexity: O(n)
+Space complexity: O(n)
+
+------------------------------------------------------Code----------------------------------------------------------------
+
+class Solution {
+    public int findMaxK(int[] nums) {
+        Map<Integer, Boolean> map = new HashMap();
+        int n = nums.length;
+        int max = -1;
+
+        for(int i = 0; i < n; i++){
+            map.put(nums[i], true);
+
+            if(map.getOrDefault(-nums[i], false))
+               max = Math.max(max, Math.abs(nums[i]));
+        }
+
+        return max;
+    }
+}
