@@ -1,0 +1,45 @@
+-----------------------------------------------Approach--------------------------------------------
+First of all we should use hash table to collect data. If we group all samilar string, 
+we easly find result. Hash table is great choise. as key of word, we may use its unque
+characters. convertToKey function accept string as parametr and remove all duplicated
+characters. After that it return string as a key for string. Than we save number of 
+same string in hashMap. After that we may find combination of them. The formula for 
+finding combination number of selecting 2 number from n is n * (n-1) / 2. With this 
+formula we may find total number of combinations.
+
+--------------------------------------------Complexity--------------------------------------------
+Time complexity: O(n ^ 2)
+Space complexity: O(n)
+
+----------------------------------------------Code------------------------------------------------
+class Solution {
+    Map<String, Integer> map;
+    int[] letters;
+    public int similarPairs(String[] words) {
+        map = new HashMap();
+        letters = new int[26];
+        int result = 0;
+        for(String s : words){
+            String res = convertToKey(s);
+            map.put(res, map.getOrDefault(res, 0) + 1);
+        }
+        for(String key : map.keySet()){
+            int n = map.get(key);
+            result += n * (n -1) / 2;
+        }
+        return result;
+    }
+
+    private String convertToKey(String s){
+        StringBuilder sb = new StringBuilder();
+        char[] chars = s.toCharArray();
+        for(int i = 0; i < 26; i++) letters[i] = 0;
+
+        for(char c : chars) letters[c -'a'] = 1;
+        
+        for(int i = 0; i < 26; i++) 
+          if(letters[i] == 1) 
+            sb.append((char)('a'+ i));
+        return sb.toString();
+    }
+}
