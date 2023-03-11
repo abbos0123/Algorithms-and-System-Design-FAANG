@@ -1,0 +1,27 @@
+-------------------------------Complexity-------------------------------------
+Time complexity: O(k) k is number of elements in 2D array;
+Space complexity: O(k) k is number of elements in 2D array;
+
+----------------------------------Code----------------------------------------
+class Solution {
+    public List<Integer> intersection(int[][] nums) {
+        Map<Integer, Integer> map = new HashMap();
+        List<Integer> list = new ArrayList();
+        int n = nums.length;
+        int m = nums[0].length;
+
+        for(int i = 0; i < n; i++){
+            m = nums[i].length;
+            for(int j = 0; j < m; j++)
+                map.put(nums[i][j], map.getOrDefault(nums[i][j], 0) + 1);
+        }
+
+        var set =  map.keySet();
+        for(int key : set)
+           if(map.get(key) == n)
+               list.add(key);
+        
+        Collections.sort(list);
+        return list;
+    }
+}
