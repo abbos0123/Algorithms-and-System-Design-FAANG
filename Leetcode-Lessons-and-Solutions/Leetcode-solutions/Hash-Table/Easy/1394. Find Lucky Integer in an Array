@@ -1,0 +1,41 @@
+--------------------------------------------Approach-----------------------------------
+Accoring to questioins properties, there would be max 500 elements and max possible
+vaule of each element is 500. That is why, we can use array which length 501 as
+a table. Index of each elemnts means actual value of array and value of cell means how
+many times this number appaired in array.
+
+------------------------------------------Complexity-----------------------------------
+Time complexity: O(n)
+Space complexity: O(1)
+
+-------------------------------------------Code----------------------------------------
+class Solution {
+    public int findLucky(int[] arr) {
+        int[] table = new int[501]; 
+        int max = -1;
+        
+        for(int k : arr)
+           table[k]++;
+
+        for(int i = 1; i < 501; i++)
+            if(i == table[i])
+               max = Math.max(i, max);
+
+        return max;
+    }
+}
+--------------------------------------------------------------------------------------
+class Solution {
+    public int findLucky(int[] arr) {
+        Map<Integer, Integer> map = new HashMap();
+        int max = -1;
+        for(int k : arr)
+           map.put(k, map.getOrDefault(k, 0)  + 1);
+
+        for(int key : map.keySet())
+            if(key == map.get(key))
+               max = Math.max(key, max);
+
+        return max;
+    }
+}
