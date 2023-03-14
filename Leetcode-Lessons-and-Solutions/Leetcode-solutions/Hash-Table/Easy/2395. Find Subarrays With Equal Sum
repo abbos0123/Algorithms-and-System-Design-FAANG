@@ -1,0 +1,26 @@
+--------------------------------------Approach---------------------------------------
+Using hashTable is good proctice to track sum of two sequence elements. As a key, we
+get sum of them. If table contains this value already, we should return false. At the
+end, if there is no duplicated values we should return false.
+
+-------------------------------------Complexity--------------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+----------------------------------------Code-----------------------------------------
+class Solution {
+    public boolean findSubarrays(int[] nums) {
+        Map<Integer, Boolean> map = new HashMap();
+        int n = nums.length;
+
+        if(n == 2) return false;
+
+        for(int i = 1; i < n; i++){
+            int t = nums[i-1] + nums[i];
+            if(map.get(t) != null) return true;
+            else map.put(t, true);
+        }
+
+        return false;
+    }
+}
