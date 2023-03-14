@@ -1,0 +1,23 @@
+--------------------------------------Complexity---------------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+-----------------------------------------Code-----------------------------------------
+class Solution {
+    public boolean checkAlmostEquivalent(String word1, String word2) {
+       int[][] table = new int[26][2];
+       char[] w1 = word1.toCharArray();
+       char[] w2 = word2.toCharArray();
+
+       for(char c : w1)
+           table[c -'a'][0]++;
+
+       for(char c : w2)
+           table[c -'a'][1]++;
+
+       for(int i = 0; i < 26; i++)
+           if(Math.abs(table[i][0] - table[i][1]) > 3) return false;
+        
+       return true;
+    }
+}
