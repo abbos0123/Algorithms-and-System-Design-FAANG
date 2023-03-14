@@ -1,0 +1,40 @@
+-------------------------------------------Approach-----------------------------------------
+HashMap is good data structure for us to save info about how many time each different card 
+appaired in all cards. The highest result is Flush. That is why first we should check is
+our cards are flush or not. Than we check whether it is Three of a Kind and then Pair. If 
+our card is none of them. We return High Card.
+
+-------------------------------------------Complexity---------------------------------------
+Time complexity: O(n) -> number of ranks
+Space complexity: O(n)
+
+----------------------------------------------Code------------------------------------------
+class Solution {
+    public String bestHand(int[] ranks, char[] suits) {
+        Map<Integer, Integer> map = new HashMap();
+
+        for(int k : ranks)
+            map.put(k, map.getOrDefault(k,0)+1);
+
+        if(isFlush(suits)) return "Flush";
+
+        for(int key : map.keySet())
+            if(map.get(key) >= 3) return "Three of a Kind";
+        
+        for(int key : map.keySet())
+            if(map.get(key) == 2) return "Pair";
+
+        return "High Card";
+    }
+
+    private boolean isFlush(char[] chars){
+        boolean b = true;
+        for(char c : chars)
+          if(c != chars[0]){
+              b = false;
+              break;
+          }
+
+        return b;
+    }
+}
