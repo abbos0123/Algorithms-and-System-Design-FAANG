@@ -1,0 +1,70 @@
+-----------------------------------------Approach-----------------------------------------
+We should collect all bobsSizes to map in order search in constant time.
+
+----------------------------------------Complexity----------------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+-----------------------------------Code with Hash Map-------------------------------------
+class Solution {
+    public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
+        int[] answer = new int[2];
+        Map<Integer, Boolean> map = new HashMap();
+        int sum = 0;
+        
+        for(int n : aliceSizes) sum += n;
+        
+        for(int n : bobSizes){
+             sum -= n;
+             map.put(n, true);
+        }
+        
+        for(int n : aliceSizes){
+            int k = n - sum / 2;
+            
+            if(map.get(k) != null){
+                answer[0] = n;
+                answer[1] = k;
+                return answer;
+            }
+        }
+
+        return answer;
+    }
+}
+
+--------------------------------Code with Binary Search----------------------------------
+
+    public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
+        int[] answer = new int[2];
+        int sum = 0;
+        Arrays.sort(bobSizes);
+
+        for(int n : aliceSizes) sum += n;
+        for(int n : bobSizes) sum -= n;
+    
+        for(int n : aliceSizes){
+            int k = n - sum / 2;
+            if(find(bobSizes, k) != -1){
+                answer[0] = n;
+                answer[1] = k;
+            }
+        }
+
+        return answer;
+    }
+
+    private int find(int[] nums, int target){
+        int left = 0;
+        int right = nums.length -1;
+
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(nums[mid] == target) return mid;
+            else if(nums[mid] > target) right = mid -1;
+            else left = mid + 1;
+        }
+
+        return -1;
+    }
+}
