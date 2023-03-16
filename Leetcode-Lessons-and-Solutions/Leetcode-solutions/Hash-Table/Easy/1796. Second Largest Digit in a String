@@ -1,0 +1,25 @@
+----------------------------------------Complexity-----------------------------------
+Time complexity: O(n)
+Space complexity: O(1)
+
+-------------------------------------------Code-------------------------------------
+    public int secondHighest(String s) {
+        int prev = -1;
+        int largest = -1;
+        boolean[] digits = new boolean[10];
+        
+        for(char c : s.toCharArray())
+            if((int)(c - '0') >= 0 && (int)(c - '0') <= 9)
+                digits[(int)(c - '0')] = true;
+
+        for(int i = 9; i >= 0; i--)
+          if(digits[i]){
+              largest = i;
+              break;
+          }
+        for(int i = 0; i < largest; i++)
+            if(digits[i]) prev = i;
+        
+        return prev;
+    }
+}
