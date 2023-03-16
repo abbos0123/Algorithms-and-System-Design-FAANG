@@ -1,0 +1,34 @@
+---------------------------------------------------Complexity----------------------------------------------
+Time complexity: O(n * m) n is number of characters in String and m is number or leading zeros in numbers.
+Space complexity: O(n)
+
+------------------------------------------------------Code------------------------------------------------
+class Solution {
+    public int numDifferentIntegers(String word) {
+        StringBuilder sb = new StringBuilder();
+        Set<String> set = new HashSet();
+        
+        for(char c : word.toCharArray()){
+            if((int)(c-'0') >=0 && (int)(c-'0') <= 9){
+                sb.append(c);
+            }else{
+                if(sb.length() != 0){
+                    while(sb.length() > 1 && sb.charAt(0) =='0')
+                        sb.delete(0,1);
+                    
+                    set.add(sb.toString());
+                    sb.delete(0, sb.length());
+                }
+            }
+        }
+
+        if(sb.length() != 0){
+            while(sb.length() > 1 && sb.charAt(0) =='0')
+                sb.delete(0,1);
+                    
+            set.add(sb.toString());
+        }
+        
+        return set.size();
+    }
+}
