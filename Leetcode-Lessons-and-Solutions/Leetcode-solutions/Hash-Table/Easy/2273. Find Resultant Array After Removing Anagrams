@@ -1,0 +1,35 @@
+---------------------------Complexity------------------------------
+Time complexity: O(n ^ n)
+Space complexity: O(1)
+
+------------------------------Code--------------------------------
+class Solution {
+    public boolean checkValid(int[][] matrix) {
+        int n = matrix.length;
+        boolean table[] = new boolean[n+1];
+
+        for(int i = 0; i < n; i++){
+            for(int k = 0; k <= n; k++)
+                table[k] = false;
+
+            for(int j = 0; j < n; j++)
+                table[matrix[i][j]] = true;  
+
+            for(int k = 1; k <= n; k++)
+               if(!table[k]) return false;
+        }
+
+         for(int i = 0; i < n; i++){
+            for(int k = 1; k <= n; k++)
+                table[k] = false;
+
+            for(int j = 0; j < n; j++)
+                table[matrix[j][i]] = true;  
+
+            for(int k = 1; k <= n; k++)
+               if(!table[k]) return false;
+        }
+
+        return true;
+    }
+}
