@@ -1,0 +1,41 @@
+class Solution {
+    public int minReorder(int n, int[][] connections) {
+        List<List<Edge>> graph = new ArrayList<>();
+        for(int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+        
+        for(int i = 0; i < connections.length; i++) {
+            // 1 denotes original edge
+            graph.get(connections[i][0]).add(new Edge(connections[i][1], 1));
+            
+            // 0 denotes reversed edge
+            graph.get(connections[i][1]).add(new Edge(connections[i][0], 0));
+        }
+        
+        // Run a dfs from 0 and dissolve(mark) the edges that can be reached from zero, thereby increasing the count
+        // Because if an edge is directly reachable from 0, it actually needs to get reversed
+        return dfs(graph, 0, new boolean[n]);
+    }
+    
+    // DFS
+    private int dfs(List<List<Edge>> graph, int source, boolean[] isVisited) {
+        int cost = 0;
+        isVisited[source] = true;
+        
+        for(Edge neighbour : graph.get(source)) {
+            if(!isVisited[neighbour.vertex]) {
+                cost += neighbour.count + dfs(graph, neighbour.vertex, isVisited);
+            }
+        }
+        return cost;
+    }
+    
+    private class Edge {
+        int vertex, count;
+        public Edge(int vertex, int count) {
+            this.vertex = vertex;
+            this.count = count;
+        }
+    }
+}
