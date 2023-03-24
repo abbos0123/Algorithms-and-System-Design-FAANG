@@ -1,0 +1,37 @@
+---------------------------------------Complexity-----------------------------------
+Time complexity: O(n ^ n)
+Space complexity:O(n)
+------------------------------------------Code--------------------------------------
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+        Map<Integer, List<Integer>> map = new HashMap();
+        int max = 0;
+        int dis = Integer.MAX_VALUE;
+        for(int i = 0; i < nums.length; i++){
+            map.putIfAbsent(nums[i], new LinkedList());
+            map.get(nums[i]).add(i);
+        }
+
+        for(int key : map.keySet())
+            max = Math.max(max, map.get(key).size());
+        
+
+        for(int key : map.keySet()){
+            List<Integer> list = map.get(key);
+            if(list.size() == max){
+                int minE = Integer.MAX_VALUE;
+                int maxE = Integer.MIN_VALUE;
+                
+                for(int e : list){
+                    if(e > maxE)  maxE = e;
+                    if(e < minE)  minE = e;
+                }
+
+                 dis = Math.min(maxE - minE + 1, dis);
+            
+            }
+        }
+
+        return dis;
+    }
+}
