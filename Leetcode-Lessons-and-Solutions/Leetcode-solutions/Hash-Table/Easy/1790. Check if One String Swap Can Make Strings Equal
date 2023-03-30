@@ -1,0 +1,26 @@
+--------------------------------Complexity--------------------------
+Time complexity: O(n^2)
+Space complexity: O(n)
+-----------------------------------Code----------------------------
+class Solution {
+    public boolean areAlmostEqual(String s1, String s2) {
+        char[] arr = s1.toCharArray();
+        int n = s1.length();
+
+        for(int i = 0; i < n; i++)
+            for(int j = i; j < n; j++){
+                char ch = arr[i];
+                arr[i] = arr[j];
+                arr[j] = ch;
+                String s = new String(arr);
+                if(s.equals(s2)) return true;
+
+                ch = arr[i];
+                arr[i] = arr[j];
+                arr[j] = ch;
+            }
+        
+        return false;
+    }
+}
+------------------------------------------------------------------
