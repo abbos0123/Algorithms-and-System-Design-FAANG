@@ -1,0 +1,26 @@
+---------------------------Complexity----------------------------
+Time complexity: O(n * lg(n))
+Space complexity: O(n)
+-----------------------------Code-------------------------------
+class Solution {
+    public int numEquivDominoPairs(int[][] dominoes) {
+        HashMap<String, Integer> map = new HashMap();
+        int n = dominoes.length - 1;
+        int count = 0;
+
+        while(n >=0){
+            String key = dominoes[n][0] + "_" + dominoes[n][1];
+            if(map.get(key) != null)
+                count += map.get(key);
+
+            String key1 = dominoes[n][1] + "_" + dominoes[n][0];
+            if(map.get(key1) != null && !key.equals(key1))
+                count += map.get(key1);
+   
+            map.put(key, map.getOrDefault(key, 0) + 1);
+            n--;
+        }
+
+        return count;
+    }
+}
