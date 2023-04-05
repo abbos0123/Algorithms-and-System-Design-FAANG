@@ -1,0 +1,45 @@
+------------------------------------------Complexity------------------------
+Time complexity: O(n1+n2)
+Space complexity:O(n1+n2)
+--------------------------------------------Code---------------------------
+class Solution {
+    public int[][] mergeArrays(int[][] nums1, int[][] nums2) {
+      List<int[]> list = new ArrayList();
+      int[][] result;
+      int ind1= 0, ind2 = 0;
+      int n1 = nums1.length;
+      int n2 = nums2.length;
+
+      while(ind1 < n1 && ind2 < n2){
+         if(nums1[ind1][0] == nums2[ind2][0]){
+             nums1[ind1][1]+=nums2[ind2][1];
+             list.add(nums1[ind1]);
+             ind1++;
+             ind2++;
+         }else if(nums1[ind1][0] < nums2[ind2][0]){
+             list.add(nums1[ind1]);
+             ind1++;
+         }else{
+             list.add(nums2[ind2]);
+             ind2++;
+         }
+      }
+
+      while(ind1 < n1){
+          list.add(nums1[ind1]);
+          ind1++;
+      }  
+
+      while(ind2 < n2){
+          list.add(nums2[ind2]);
+          ind2++;
+      }
+
+      result = new int[list.size()][2];
+      
+      for(int i = 0; i < list.size(); i++)
+          result[i] = list.get(i);
+
+      return result;
+    }
+}
