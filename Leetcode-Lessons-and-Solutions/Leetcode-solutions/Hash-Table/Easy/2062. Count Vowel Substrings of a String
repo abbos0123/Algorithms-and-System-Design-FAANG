@@ -1,0 +1,38 @@
+----------------------------------------Complexity------------------------------------
+Time complexity: O(n ^ n)
+Space complexity: O(n)
+-------------------------------------------Code---------------------------------------
+class Solution {
+    public int countVowelSubstrings(String word) {
+       int n = word.length(), count = 0;
+       int left = 0, right = word.length();
+
+       while(left <= n - 5){
+           StringBuilder sb = new StringBuilder();
+
+           for(int i = left; i < n; i++){
+               char c = word.charAt(i);
+               if(c == 'a' || c == 'e' || c =='i' || c == 'o' || c == 'u'){
+                   sb.append(c);
+                   if(isValid(sb.toString()))count++;
+               }else{
+                   break;
+               }
+           }
+
+           left++;
+       }
+
+       return count;
+    }
+
+    private boolean isValid(String s){
+        if( s.contains("a") &&
+            s.contains("e") &&
+            s.contains("i") &&
+            s.contains("o") &&
+            s.contains("u")) return true;
+            return false;
+    }
+}
+--------------------------------------------------------------------------------------
