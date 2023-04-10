@@ -1,0 +1,29 @@
+----------------------------------Complexity-------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+------------------------------------Code----------------------------------
+class Solution {
+    public boolean isValid(String s) {
+       Stack<Character> stack = new Stack<>();
+       for(char c : s.toCharArray()){
+           if(c == '(' || c == '[' || c == '{'){
+               stack.push(c);
+               continue;
+           }
+
+           if(stack.isEmpty())
+              return false;
+         
+           if(stack.peek() == '(' && c == ')'||
+              stack.peek() == '[' && c == ']'||
+              stack.peek() == '{' && c == '}')
+              stack.pop();  
+           else return false;  
+       }
+
+       return stack.isEmpty();
+    }
+}
+
+--------------------------------------------------------------------------
