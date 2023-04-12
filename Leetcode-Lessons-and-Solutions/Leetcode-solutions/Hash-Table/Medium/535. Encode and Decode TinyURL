@@ -1,0 +1,35 @@
+-----------------------------------------------Complexity-------------------------------------------
+Time complexity: -
+Space complexity: -
+
+
+--------------------------------------------------Code----------------------------------------------
+
+public class Codec {
+    HashMap<String, String> encodeTable = new HashMap();
+     HashMap<String, String> decodeTable = new HashMap();
+
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        if(!encodeTable.keySet().contains(longUrl)){
+            String id = java.util.UUID.randomUUID().toString();
+            encodeTable.put(longUrl, id);
+            decodeTable.put(id, "http://tinyUrl/" + id);
+            encodeTable.put("http://tinyUrl/" + id, longUrl);
+            return  "http://tinyUrl/" + id;
+        }
+
+        return decodeTable.get(encodeTable.get(longUrl));
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+       return encodeTable.get(shortUrl);
+    }
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(url));
+
+----------------------------------------------------------------------------------------------------
