@@ -1,0 +1,28 @@
+----------------------------------------Complexity-----------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+------------------------------------------Code--------------------------------
+class Solution {
+    public List<List<Integer>> groupThePeople(int[] groupSizes) {
+        HashMap<Integer, List<Integer>> map = new HashMap();
+        List<List<Integer>> list = new ArrayList();
+        int n = groupSizes.length;
+
+        for(int i = 0; i < n; i++){
+            if(map.get(groupSizes[i]) == null){
+                List<Integer> rowList = new ArrayList();
+                rowList.add(i);
+                list.add(rowList);
+
+                if(groupSizes[i] != 1)
+                  map.put(groupSizes[i], rowList);
+            }else{
+                map.get(groupSizes[i]).add(i);
+                if(map.get(groupSizes[i]).size() == groupSizes[i])
+                   map.put(groupSizes[i], null);
+            }
+        }
+
+        return list;
+    }
+}
