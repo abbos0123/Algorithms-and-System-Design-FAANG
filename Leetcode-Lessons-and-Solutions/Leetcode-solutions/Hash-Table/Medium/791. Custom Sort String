@@ -1,0 +1,26 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        StringBuilder result = new StringBuilder();
+        Character[] characters = new Character[s.length()];
+        Map<Character, Integer> map = new HashMap<>();
+        int k = 0;
+
+        for (char c : s.toCharArray())
+            characters[k++] = c;
+
+        k = 0;
+        for (char c : order.toCharArray())
+            map.put(c, k++);
+
+        Arrays.sort(characters, (o1, o2) -> {
+            int pos1 = map.getOrDefault(o1, -1);
+            int pos2 = map.getOrDefault(o2, -1);
+            if (pos2 == -1) return 1;
+            return pos1 - pos2;
+        });
+
+        for (Character character : characters)
+            result.append(character);
+        return result.toString();
+    }
+}
