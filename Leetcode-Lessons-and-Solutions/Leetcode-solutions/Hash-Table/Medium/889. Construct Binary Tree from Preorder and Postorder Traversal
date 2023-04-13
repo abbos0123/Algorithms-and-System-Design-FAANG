@@ -1,0 +1,19 @@
+class Solution {
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        return buildBST(preorder, postorder, 0, preorder.length-1, 0, postorder.length-1);
+    }
+
+    private TreeNode buildBST(int[] preOrder, int[] postOrder, int preStart, int preEnd, int postStart, int postEnd){
+        if(preStart > preEnd) return null;
+        TreeNode root = new TreeNode(preOrder[preStart]);
+        if(preStart == preEnd) return root;
+
+        int postIndex = postStart;
+        while(postOrder[postIndex] != preOrder[preStart +1]) postIndex++;
+
+        int len = postIndex -postStart +1;
+        root.left = buildBST(preOrder, postOrder, preStart+1, preStart + len, postStart, postIndex);
+        root.right = buildBST(preOrder, postOrder, preStart + len + 1, preEnd, postIndex + 1, postEnd -1);
+        return root;
+    }
+}
