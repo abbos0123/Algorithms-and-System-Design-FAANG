@@ -1,0 +1,26 @@
+class Solution {
+    private int[] inorder;
+    private int[] postorder;
+
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        this.inorder = inorder;
+        this.postorder = postorder;
+        return build(0, inorder.length-1, 0, postorder.length-1);
+    }
+
+    private TreeNode build(int inLeft, int inRight, int posLeft, int posRight){
+        if(inLeft > inRight) return null;
+
+        TreeNode root = new TreeNode(postorder[posRight]);
+        int inRoot = findRootPos(inLeft, inRight, root.val);
+        root.left = build(inLeft, inRoot-1, posLeft, posLeft + inRoot-1-inLeft);
+        root.right = build(inRoot+1, inRight, posLeft + inRoot-inLeft, posRight-1);
+        return root;
+    }
+
+    private int findRootPos(int left, int right, int target){
+        for(int i = left; i <= right; i++)
+            if(inorder[i] == target) return i;
+        return left;
+    }
+}
