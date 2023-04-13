@@ -1,0 +1,30 @@
+class Solution {
+   public String longestWord(String[] words) {
+        Map<String, String> map = new HashMap<>();
+        int maxLen = 0;
+
+        Arrays.sort(words, Comparator.comparingInt(String::length));
+
+        if(words[0].length() > 1)
+            return "";
+       
+        for(int i = 0; i < words.length; i++){
+            if (Objects.equals(map.getOrDefault(words[i].substring(0, words[i].length() - 1), ""),
+                    words[i].substring(0, words[i].length() - 1))){
+                map.put(words[i], words[i]);
+                maxLen = words[i].length();
+            }else if(maxLen + 1 < words[i].length())
+                break;
+        }
+
+        List<String> list = new ArrayList<>();
+
+        for(String k: map.keySet())
+            if(k.length() == maxLen)
+                list.add(k);
+
+        Collections.sort(list);
+
+        return list.get(0);
+    }
+}
