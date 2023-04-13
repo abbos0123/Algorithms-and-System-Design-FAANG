@@ -1,0 +1,34 @@
+class Solution {
+    HashMap<Integer, Integer> table;
+    public int[] findFrequentTreeSum(TreeNode root) {
+        table = new HashMap();
+        List<Integer> list = new LinkedList();
+        int max = 0;
+        int pos = -1;
+       
+        sum(root);
+
+        for(int key : table.keySet())
+           max = Math.max(max, table.get(key));
+        
+        for(int key : table.keySet())
+            if(table.get(key) == max)
+                list.add(key);
+        
+       int[] res = new int[list.size()];
+      
+       for(int i = 0; i < list.size(); i++)
+          res[i] = list.get(i);
+
+        return res;
+    }
+
+    private int sum(TreeNode root){
+        if(root == null) return 0;
+
+        int sum = root.val + sum(root.left) + sum(root.right);
+        table.put(sum, table.getOrDefault(sum, 0) + 1);
+
+        return sum;
+    }
+}
