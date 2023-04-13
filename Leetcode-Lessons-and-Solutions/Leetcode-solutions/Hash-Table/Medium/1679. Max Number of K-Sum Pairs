@@ -1,0 +1,31 @@
+class Solution {
+    
+    // 0 - declare variables 
+    // 1- sort and set two pointers 
+    // 2 - delete  and count pairs in loop 
+    // 3 - return result 
+   
+    public int maxOperations(int[] nums, int k) {
+        // phase - 0
+        int count = 0;
+        int left = 0, right = nums.length - 1;
+        
+        //phase - 1
+        Arrays.sort(nums);
+        
+        while(left < right){
+            if(nums[left] + nums[right] == k){
+                count++;
+                left++;
+                right--;
+            }else if(nums[left] + nums[right] > k){
+                right--;
+            }else{
+                left++;
+            }
+        }
+     
+    return count;    
+    }
+}
+Console
