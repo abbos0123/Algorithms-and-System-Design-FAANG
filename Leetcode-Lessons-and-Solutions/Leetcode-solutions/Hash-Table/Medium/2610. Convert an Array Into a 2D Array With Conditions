@@ -1,0 +1,24 @@
+class Solution {
+    public List<List<Integer>> findMatrix(int[] nums) {
+        List<List<Integer>> list = new LinkedList();
+        HashMap<Integer, Integer> map = new HashMap();
+        int max = 0;
+
+        for(int k : nums){
+            map.put(k, map.getOrDefault(k, 0)+1);
+            if(map.get(k) > max) max = map.get(k);
+        }
+
+        for(int i = 0; i < max; i++) 
+            list.add(new LinkedList());
+        
+        for(int key : map.keySet()){
+            int all = map.get(key);
+
+            for(int i = 0; i < all; i++)
+                list.get(i).add(key); 
+        }
+
+        return list;
+    }
+}
