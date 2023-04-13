@@ -1,0 +1,11 @@
+public class Solution {
+    private Map<Integer, Boolean> map = new HashMap<>();
+    
+    public ListNode detectCycle(ListNode head) {
+        while(true){
+            if(head == null || map.getOrDefault(head.hashCode(), false)) return head;
+            map.put(head.hashCode(), true);
+            head = head.next;
+        }  
+    }
+}
