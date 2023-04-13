@@ -1,0 +1,50 @@
+class Solution implements Comparator<String> {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> result = new ArrayList<>();
+
+        Arrays.sort(strs, this);
+
+        for (int i = 0; i < strs.length; i++) {
+            var list = new ArrayList<String>();
+
+            if (strs[i] == null) continue;
+
+            list.add(strs[i]);
+
+            for (int j = i + 1; j < strs.length; j++){
+                if (strs[j] == null) continue;
+                
+                if (strs[j].length() != strs[i].length()) break;
+               
+                if (compareWords(strs[i], strs[j])) {
+                    list.add(strs[j]);
+                    strs[j] = null;
+                }
+        }
+            strs[i] = null;
+            result.add(list);
+        }
+        return result;
+    }
+
+    private boolean compareWords(String s1, String s2) {
+        if (s1 == null || s2 == null) return false;
+        var arr1 = s1.toCharArray();
+        var arr2 = s2.toCharArray();
+
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        for (int i = 0; i < arr1.length; i++)
+            if (arr1[i] != arr2[i])
+                return false;
+
+        return true;
+
+    }
+
+    @Override
+    public int compare(String str1, String str2) {
+        return str2.length() - str1.length();
+    }
+}
