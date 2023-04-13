@@ -1,0 +1,26 @@
+-----------------------------------------Complexity----------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+--------------------------------------------Code-------------------------------------
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+       Stack<Integer> stack = new Stack();
+       int n = pushed.length, m = popped.length;
+       int p1 = 0, p2 = 0; 
+
+       while(p1 <= n && p2 < m){
+            if(!stack.isEmpty() && stack.peek() == popped[p2]){
+               stack.pop();
+               p2++;
+               continue;
+           }
+           if(p1 == n) break;
+           stack.push(pushed[p1++]);
+           
+       }
+
+       return p1 == n && p2 == m && stack.isEmpty();
+    }
+}
+-------------------------------------------------------------------------------------
