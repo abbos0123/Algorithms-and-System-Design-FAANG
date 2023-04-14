@@ -1,0 +1,49 @@
+-------------------------------------------Complexity------------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+
+------------------------------------Hash map solution------------------------------------
+
+class Solution {
+    public int countDistinctIntegers(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap();
+        int n, p;
+        for(int k : nums){
+            n = 0;
+            p = k;
+            while(p > 0){
+                n += p % 10;
+                n *=10;
+                p /= 10;
+            } 
+            map.put(k,0);
+            map.put(n/10,0);
+        
+        }
+        return map.keySet().size();
+    }
+}
+
+------------------------------------Hash set solution------------------------------------
+
+class Solution {
+    public int countDistinctIntegers(int[] nums) {
+        Set<Integer> set = new HashSet();
+         int n, p;
+        for(int k : nums){
+            n = 0;
+            p = k;
+            while(p > 0){
+                n += p % 10;
+                n *=10;
+                p /= 10;
+            } 
+            set.add(k);
+            set.add(n/10);
+        }
+        return set.size();
+    }
+}
+
+--------------------------------------------------------------------------------------
