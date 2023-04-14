@@ -1,0 +1,27 @@
+----------------------------------Complexity--------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+-------------------------------------Code-----------------------------------
+class Solution {
+    public int[] findingUsersActiveMinutes(int[][] logs, int k) {
+        HashMap<Integer,Set<Integer>> uml = new HashMap();
+        int[] ans = new int[k];
+
+        for(int[] log : logs){
+            uml.putIfAbsent(log[0], new HashSet<Integer>());
+            uml.get(log[0]).add(log[1]);
+        }
+
+        for(int key : uml.keySet()){
+            int size = uml.get(key).size();
+            if(size <= k){
+                ans[size-1]++;
+            }
+        }
+
+        return ans;
+    }
+}
+
+----------------------------------------------------------------------------
