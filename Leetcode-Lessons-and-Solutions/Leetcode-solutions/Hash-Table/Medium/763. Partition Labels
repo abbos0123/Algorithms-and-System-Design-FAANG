@@ -1,0 +1,29 @@
+-----------------------------------Complexity--------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+-------------------------------------Code------------------------------------
+class Solution {
+    public List<Integer> partitionLabels(String s) {
+      Map<Character, Integer> map = new HashMap();
+      List<Integer> list = new ArrayList();
+
+      for(int i = 0; i < s.length(); i++)
+         map.put(s.charAt(i), i);
+      
+      int prev = -1, max = 0;
+
+      for(int i = 0; i < s.length(); i++){
+          char c = s.charAt(i);
+          max = Math.max(map.get(c), max);
+
+          if(max == i){
+              list.add(max-prev);
+              prev = max;
+
+          }
+      }
+
+       return list; 
+    }
+}
