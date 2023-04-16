@@ -1,0 +1,40 @@
+------------------------------------Complexity--------------------------------------------
+Time complexity: O(n ^ m)
+n is number of words
+m is total length of all words
+Space complexity: O(n)
+---------------------------------------Code----------------------------------------------
+class Solution {
+    int[] table = new int[26];
+    int[] table2 = new int[26];
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        List<String> list = new ArrayList();
+
+        for(String s : words){
+            if(isMatch(s, pattern))
+               list.add(s);
+        }
+
+        return list;
+    }
+
+    private boolean isMatch(String word, String pattern){
+        int n = word.length();
+        for(int i = 0; i < 26; i++){
+            table[i] = -1;
+            table2[i] = -1;
+        }
+        
+        for(int i = 0; i < n; i++){
+            if(table[word.charAt(i) - 'a'] != -1 && table[word.charAt(i) - 'a'] != pattern.charAt(i) - 'a' || 
+               table2[pattern.charAt(i) - 'a'] != -1 && table2[pattern.charAt(i) - 'a'] != word.charAt(i) - 'a')
+                return false;
+            else {
+                table[word.charAt(i) - 'a'] = pattern.charAt(i) - 'a';
+                table2[pattern.charAt(i) - 'a'] = word.charAt(i) - 'a';
+            }
+        }
+
+        return true;
+    }
+}
