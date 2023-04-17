@@ -1,35 +1,25 @@
 class Solution {
   public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-        if (candies.length == 0 || candies == null)
-            return null;
-
         List<Boolean> list = new ArrayList<>();
 
-        if (candies.length == 1){
-           list.add(true);
-           return list;
-        }
+        int max = findMax(candies) - extraCandies;
 
-        int max = findMax(candies);
-
-        for (int i = 0; i < candies.length; i++){
-            if (max <= candies[i] + extraCandies)
-                list.add(true);
-            else
-                list.add(false);
-        }
-
+        for (int i = 0; i < candies.length; i++)
+            list.add(max <= candies[i]);
+              
         return list;
     }
 
 
     int findMax(int[] array) {
         int max = array[0];
+        int n = array.length;
 
-        for (int i = 1; i < array.length; i++) {
+        for (int i = 1; i < n; i++) 
             if (max < array[i])
                 max = array[i];
-        }
+        
         return max;
     }
 }
+
