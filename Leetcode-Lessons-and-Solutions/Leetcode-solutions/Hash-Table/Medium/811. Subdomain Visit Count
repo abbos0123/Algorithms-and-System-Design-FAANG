@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------Complexity---------------------------------------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+
+-----------------------------------------------------------------------------Code------------------------------------------------------------------
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+      HashMap<String, Integer> map = new HashMap();
+      List<String> list = new ArrayList();
+      int count = 0;
+      Integer n = 0;
+
+      for(String s : cpdomains){
+          count = 0;
+          String[] array = s.split(" ");
+          n = Integer.valueOf(array[0]);
+          String[] domains = array[1].split("[.]", 0);
+          if(domains.length == 3){
+            map.put(domains[0] + "." + domains[1] + "." + domains[2], map.getOrDefault(domains[0] + "." + domains[1] + "." + domains[2], 0) + n);
+            map.put(domains[1] + "." + domains[2], map.getOrDefault(domains[1] + "." + domains[2], 0) + n);
+            map.put(domains[2], map.getOrDefault(domains[2], 0) + n);
+          }else {
+            map.put(domains[0] + "." + domains[1], map.getOrDefault(domains[0] + "." + domains[1], 0) + n);
+            map.put(domains[1], map.getOrDefault(domains[1], 0) + n);
+          }
+      } 
+
+      for(String key : map.keySet())
+        list.add(map.get(key) + " " + key);
+      
+      return list;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------
