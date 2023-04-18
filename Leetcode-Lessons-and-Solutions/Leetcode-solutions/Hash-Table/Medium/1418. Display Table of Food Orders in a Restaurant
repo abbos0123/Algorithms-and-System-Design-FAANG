@@ -1,0 +1,41 @@
+class Solution {
+    public List<List<String>> displayTable(List<List<String>> orders) {
+        List<List<String>> list = new ArrayList();
+        HashMap<Integer, int[]> table = new HashMap();
+        List<String> foods = new ArrayList();
+        List<String> row = null;
+    
+        for(List<String> order : orders)
+           if(!foods.contains(order.get(2)))
+              foods.add(order.get(2));
+        
+        Collections.sort(foods);
+        
+        for(List<String> order : orders){
+            int key = Integer.valueOf(order.get(1));
+
+            if(!table.containsKey(key))
+              table.put(key, new int[foods.size()]);
+            
+            table.get(key)[foods.indexOf(order.get(2))]++;
+        }
+
+        foods.add(0, "Table");
+        list.add(foods);
+        
+        List<Integer> keys = new ArrayList(table.keySet());
+        Collections.sort(keys);
+
+        for(Integer key : keys){
+            row =  new ArrayList();
+            row.add(String.valueOf(key));
+           
+            for(int i : table.get(key))
+                row.add(String.valueOf(i));
+            
+            list.add(row);
+        }
+
+        return list;
+    }
+}
