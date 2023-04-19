@@ -1,0 +1,49 @@
+----------------------------------------------------Complexity-----------------------------------------
+Time complexity: O(n + m)
+  n is number of words
+  m is total length of all words
+Space complexity: O(n)
+
+-------------------------------------------------------Code--------------------------------------------
+class Solution {
+    private int[] odds = new int[26];
+    private int[] evens = new int[26];
+    private  StringBuilder sb = new StringBuilder();
+
+    public int numSpecialEquivGroups(String[] words) {
+        HashMap<String, Integer> map = new HashMap<String, Integer>();   
+  
+        for(String s : words){
+            String key = generateKey(s);
+            map.put(key, map.getOrDefault(key, 0) + 1);
+        }
+
+        return map.keySet().size();
+    }
+
+    private String generateKey(String s){
+        boolean isOdd = true;
+        sb.setLength(0);
+        
+        for(int i = 0; i < 26; i++){
+            odds[i]=0;
+            evens[i]=0;
+        }
+
+        for(char c : s.toCharArray()){
+            if(isOdd)
+                odds[c-'a']++;
+            else
+                evens[c -'a']++;
+            isOdd = !isOdd;
+        }
+
+        for(int i = 0; i < 26; i++){
+            sb.append(odds[i]);
+            sb.append(evens[i]);
+        }
+        
+        return sb.toString();
+    }
+}
+-------------------------------------------------------------------------------------------------------
