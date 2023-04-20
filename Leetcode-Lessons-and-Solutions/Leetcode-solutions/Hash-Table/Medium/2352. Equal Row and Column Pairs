@@ -1,0 +1,50 @@
+class Solution {
+    public int equalPairs(int[][] grid) {
+        HashMap<String, Integer> rows = new HashMap();
+        HashMap<String, Integer> columns = new HashMap();
+        int sum = 0;
+
+        for(String s : readRow(grid))
+            rows.put(s, rows.getOrDefault(s, 0) + 1);
+
+        for(String s : readColumn(grid))
+            columns.put(s, columns.getOrDefault(s, 0) + 1);
+
+        for(String key : rows.keySet())
+            sum += rows.get(key) * columns.getOrDefault(key, 0);
+        
+        return sum;
+    }
+
+
+    private List<String> readRow(int[][] table){
+        List<String> list = new ArrayList();
+        StringBuilder sb = new StringBuilder();
+        int n = table.length;
+        int m = table[0].length;
+
+        for(int i = 0; i < n; i++){
+            sb.setLength(0);
+            for(int j = 0; j < m; j++)
+                sb.append(table[i][j]).append("_");
+            list.add(sb.toString());
+        }
+
+        return list;
+    }
+
+     private List<String> readColumn(int[][] table){
+        List<String> list = new ArrayList();
+        StringBuilder sb = new StringBuilder();
+        int n = table.length;
+        int m = table[0].length;
+
+        for(int i = 0; i < m; i++){
+            sb.setLength(0);
+            for(int j = 0; j < n; j++)
+                sb.append(table[j][i]).append("_");
+            list.add(sb.toString());
+        }
+        return list;
+    }
+}
