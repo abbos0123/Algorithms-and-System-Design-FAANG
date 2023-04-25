@@ -1,0 +1,40 @@
+----------------------------------------Complexity---------------------------
+Time complexity: O(n ^ n)
+Space complexity: O(n)
+
+
+------------------------------------------Code-------------------------------
+class Solution {
+    public int[] restoreArray(int[][] pairs) {
+        Map<Integer, Set<Integer>> map = new HashMap();
+        List<Integer> list = new ArrayList();
+
+        for(int[] array : pairs){
+            map.putIfAbsent(array[0], new HashSet<Integer>());
+            map.putIfAbsent(array[1], new HashSet<Integer>());
+            map.get(array[0]).add(array[1]);
+            map.get(array[1]).add(array[0]);
+        }
+
+        for(Integer key: map.keySet()){
+            if(map.get(key).size() == 1){
+                for(Integer p : map.get(key)){
+                    list.add(key);
+                    list.add(p);
+                    map.get(p).remove(key);
+                }
+                break;
+            }
+        }
+
+        while(map.get(list.get(list.size()-1)).size() != 0){
+            int n = list.get(list.size() -1);
+            for(Integer p : map.get(n)){
+                    list.add(p);
+                    map.get(p).remove(n);
+                }
+        }
+
+        return list.stream().mapToInt(i->i).toArray();
+    }
+}
