@@ -1,0 +1,28 @@
+------------------------------Complexity------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+
+---------------------------------Code---------------------------------
+class Solution {
+     public int[] arrayChange(int[] nums, int[][] opt) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],i);
+        }
+        
+        for(int i=0;i<opt.length;i++){
+            int oldNum=opt[i][0];
+            int newNum=opt[i][1];
+            
+            if(map.containsKey(oldNum)){
+                int index=map.get(oldNum);
+                nums[index]=newNum;
+                
+                map.put(newNum,index);
+            }
+        }
+        return nums;
+    }
+}
