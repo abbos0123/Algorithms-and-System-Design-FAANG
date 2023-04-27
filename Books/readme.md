@@ -8,4 +8,4 @@ Data structures and algorithms are the fundamentals of software development. The
 |2.|Introduction to Algorithms|[Introduction to Algorithms](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books/Introduction%20to%20Algorithms)|```1313```|:hourglass:|
 |3.|Algorithms|[Algorithms](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books/Algorithms)|```969```|:hourglass:|
 |4.|Grokking Algorithms|[Grokking Algorithms](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books/Grokking%20Algorithms)|```258```|:hourglass:|
-|5.|The Algorithm Design Manual by Steve S. Skiena|[The Algorithm Design Manual by Steve S. Skiena](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books/The%20Algorithm%20Design%20Manual%20by%20Steve%20S.%20Skiena)|```258```|:hourglass:|
+|5.|The Algorithm Design Manual by Steve S. Skiena|[The Algorithm Design Manual by Steve S. Skiena](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books/The%20Algorithm%20Design%20Manual%20by%20Steve%20S.%20Skiena)|```739```|:hourglass:|
