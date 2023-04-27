@@ -1,0 +1,38 @@
+-------------------------------------------------------Link--------------------------------------------
+https://leetcode.com/problems/employee-importance/solutions/3459429/java-easy-and-simple-hash-table-implementation-solution/
+---------------------------------------------------Complexity------------------------------------------
+Time complexity: O(n)
+Space complexity: O(n)
+
+------------------------------------------------------Code---------------------------------------------
+/*
+// Definition for Employee.
+class Employee {
+    public int id;
+    public int importance;
+    public List<Integer> subordinates;
+};
+*/
+
+class Solution {
+    HashMap<Integer, Employee> map = new HashMap();
+    public int getImportance(List<Employee> employees, int id) {
+        int res = 0;
+
+        for(Employee e : employees)
+            map.put(e.id, e);
+        
+        return calculate(map.get(id).subordinates, employees) + map.get(id).importance;
+    }
+
+    private int calculate(List<Integer> list, List<Employee> employees){
+        if(list.size() == 0) return 0;
+        int sum = 0;
+        for(int i = 0; i < list.size(); i++){
+            sum += map.get(list.get(i)).importance;
+            sum += calculate(map.get(list.get(i)).subordinates, employees);
+        }
+
+        return sum;
+    }
+}
