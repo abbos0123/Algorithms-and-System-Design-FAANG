@@ -1,4 +1,4 @@
-# Algorithms and System  Design
+# Data Structure and Algorithms
 
 This project for someone who want to leard data structure and algorithms. All data structure related algorithms and books are collected here. If this can help you, It makes us very happy...
 
