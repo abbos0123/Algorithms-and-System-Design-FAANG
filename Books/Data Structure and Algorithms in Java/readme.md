@@ -15,7 +15,7 @@ This is a book for studying Data Structures in Java. Yes, the name says Data str
 |9|Red-Black Trees|||:heavy_check_mark:|
 |10|2-3-4 Trees and External Storage|||:heavy_check_mark:|
 |11|Hash Tables|[Leetcode Hash Table solution](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Hash-Table)||:heavy_check_mark:|
-|12|Heaps|||:hourglass:|
+|12|Heaps|[Leetcode Heap Solutions](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Leetcode-Lessons-and-Solutions/Leetcode-solutions/Heap)| <br/><ul><li>[Heap Data structure](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/blob/main/Books/Data%20Structure%20and%20Algorithms%20in%20Java/Heap%20Data%20Structure%20-%20javatpoint.pdf) ```www.javatpoint.com```</li></ul><br/>|:book:|
 |13|Graphs|||:hourglass:|
 |14|Weighted Graphs|||:hourglass:|
 |15|When to Use What|||:hourglass:|
