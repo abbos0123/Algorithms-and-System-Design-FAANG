@@ -8,7 +8,7 @@ In this section you may find best books whick is very valuable for you to learn 
 
 | Section | Books Descriptions |
 | --- | --- |
-| DSAA books | [All Good books about data structure and algorithms](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books/Data-Structure-And-Algorithms)|
+| DSAA books | [Data structure and algorithms](https://github.com/abbos0123/Algorithms-and-System-Design-FAANG/tree/main/Books)|
 
 ## Authors
 
