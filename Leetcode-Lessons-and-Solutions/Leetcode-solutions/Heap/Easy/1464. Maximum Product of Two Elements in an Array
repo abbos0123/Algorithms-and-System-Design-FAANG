@@ -1,0 +1,13 @@
+ public int maxProduct(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int prevMax = Integer.MIN_VALUE;
+
+        for (int num : nums)
+            if (num >= max) {
+                prevMax = max;
+                max = num;
+            } else if (num >= prevMax)
+                prevMax = num;
+        
+        return (max - 1) * (prevMax - 1);
+    }
