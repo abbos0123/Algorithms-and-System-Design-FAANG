@@ -1,0 +1,28 @@
+class Solution {
+     public int[] kWeakestRows(int[][] mat, int k) {
+        int[] res = new int[k];
+        Integer[][] draft = new Integer[mat.length][2];
+
+
+        for (int i = 0; i < mat.length; i++) {
+            int[] row = mat[i];
+            int sum = 0;
+
+            for (int column : row)
+                sum += column;
+
+            draft[i][0] = i;
+            draft[i][1] = sum;
+        }
+
+        Arrays.sort(draft, (o1, o2) -> {
+            int t = o1[1] - o2[1];
+            return t != 0 ? t : o1[0] - o2[0];
+        });
+
+        for (int i = 0; i < k; i++)
+            res[i] = draft[i][0];
+        
+        return res;
+    }
+}
