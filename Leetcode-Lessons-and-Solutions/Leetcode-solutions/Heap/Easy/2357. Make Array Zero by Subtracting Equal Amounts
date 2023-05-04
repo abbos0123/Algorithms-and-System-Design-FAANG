@@ -1,0 +1,22 @@
+     public int minimumOperations(int[] nums) {
+        int k = 0;
+        int last;
+
+        Arrays.sort(nums);
+        last = nums[nums.length - 1];
+
+        for (int num : nums) {
+            if (num != 0) {
+                last -= num;
+                k++;
+                
+                for (int i = 0; i < nums.length-1; i++)
+                    nums[i] -= num;
+                
+                if (last <= 0)
+                    break;
+            }
+        }
+
+        return k;
+    }
