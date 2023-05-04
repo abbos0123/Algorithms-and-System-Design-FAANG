@@ -1,0 +1,43 @@
+class Solution {
+     public String[] findRelativeRanks(int[] score) {
+        int n = score.length;
+        String[] answer = new String[n];
+        int[] sortedArr = Arrays.copyOf(score, n);
+
+        Arrays.sort(sortedArr);
+        int k = 0;
+        for (int i : score) {
+            int t = n - binarySearch(sortedArr, 0, n - 1, i);
+
+            switch (t) {
+                case 1 -> answer[k++] = "Gold Medal";
+
+                case 2 -> answer[k++] = "Silver Medal";
+
+                case 3 -> answer[k++] = "Bronze Medal";
+
+                default -> answer[k++] = String.valueOf(t);
+
+            }
+        }
+        
+        return answer;
+    }
+
+
+    int binarySearch(int arr[], int l, int r, int x) {
+        if (r >= l) {
+            int mid = l + (r - l) / 2;
+
+            if (arr[mid] == x)
+                return mid;
+
+            if (arr[mid] > x)
+                return binarySearch(arr, l, mid - 1, x);
+
+            return binarySearch(arr, mid + 1, r, x);
+        }
+        return -1;
+    }
+
+}
