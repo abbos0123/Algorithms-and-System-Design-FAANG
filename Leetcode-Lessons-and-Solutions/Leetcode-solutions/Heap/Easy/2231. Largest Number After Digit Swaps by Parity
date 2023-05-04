@@ -1,0 +1,35 @@
+class Solution {
+     public int largestInteger(int num) {
+        List<Integer> listOdd = new ArrayList<>();
+        List<Integer> listEven = new ArrayList<>();
+        boolean[] evenArray = new boolean[String.valueOf(num).length()];
+        int t = evenArray.length - 1;
+        int res = 0;
+
+        while (num > 0) {
+            int last = num % 10;
+            num /= 10;
+
+            if (last % 2 == 0) {
+                evenArray[t--] = true;
+                listEven.add(last);
+            } else {
+                listOdd.add(last);
+                t--;
+            }
+        }
+
+        listEven.sort((o1, o2) -> o2 - o1);
+        listOdd.sort((o1, o2) -> o2 - o1);
+
+        for (boolean b : evenArray) {
+            if (b)
+                res = 10 * res + listEven.remove(0);
+            else
+                res = 10 * res + listOdd.remove(0);
+
+        }
+
+        return res;
+    }
+}
