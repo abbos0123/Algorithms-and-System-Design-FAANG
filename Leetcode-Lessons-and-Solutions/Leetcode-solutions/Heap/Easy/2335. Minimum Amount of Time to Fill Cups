@@ -1,0 +1,28 @@
+class Solution {
+    public int fillCups(int[] amount) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        int res = 0, t;
+
+        for(int k : amount)
+          if(k > 0) pq.add(k);
+        
+        while(!pq.isEmpty()){
+           t = pq.poll();
+           
+           if(pq.isEmpty()){
+             res += t;
+             break;
+           }
+           int k = pq.poll();
+          
+           if(k > 1)
+             pq.add(k-1);
+
+           if(t > 1)
+             pq.add(t-1);
+        
+           res++;
+        }
+        return res;
+    }
+}
