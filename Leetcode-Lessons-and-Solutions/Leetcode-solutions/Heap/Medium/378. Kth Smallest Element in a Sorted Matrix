@@ -1,0 +1,19 @@
+class Solution {
+   public int kthSmallest(int[][] matrix, int k) {
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o));
+
+        for (int[] ints : matrix)
+            for (int elem : ints)
+                priorityQueue.add(elem);
+
+        while (!priorityQueue.isEmpty()) {
+            k --;
+
+            if (k == 0)
+             return priorityQueue.poll();
+            else
+                priorityQueue.poll();
+        }
+        return -1;
+    }
+}
