@@ -1,0 +1,25 @@
+---------------------------------Complexity-----------------------
+Time complexity: O(n)
+Space complexity:O(n)
+------------------------------------Code--------------------------
+
+class SeatManager {
+    PriorityQueue<Integer> pq;
+    int count = 0;
+    
+    public SeatManager(int n) {
+        pq = new PriorityQueue<>();
+        count = 1;
+    }
+    
+    public int reserve() {
+        if(pq.size() == 0)
+           return count++;
+
+        return pq.poll();
+    }
+    
+    public void unreserve(int seatNumber) {
+        pq.add(seatNumber);
+    }
+}
