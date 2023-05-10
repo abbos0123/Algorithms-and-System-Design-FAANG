@@ -1,0 +1,30 @@
+class Solution {
+   public int[][] kClosest(int[][] points, int k) {
+        int i = points.length, j = 0;
+        Integer[][] myPoints = new Integer[i][2];
+        int[][] res = new int[k][2];
+
+
+        for (int[] point : points) {
+            myPoints[j][0] = point[0];
+            myPoints[j++][1] = point[1];
+        }
+
+        Arrays.sort(myPoints, (Integer[] point1, Integer[] point2) -> {
+            double dis1 =  Math.sqrt(Math.pow(point1[0], 2) + Math.pow(point1[1], 2));
+            double dis2 =  Math.sqrt(Math.pow(point2[0], 2) + Math.pow(point2[1], 2));
+
+            if (dis1 > dis2)
+                return 1;
+            else 
+                return -1;
+        });
+
+        for (int q = 0; q < k ; q++) {
+            res[q][0] = myPoints[q][0];
+            res[q][1] = myPoints[q][1];
+        }
+
+        return res;
+    }
+}
