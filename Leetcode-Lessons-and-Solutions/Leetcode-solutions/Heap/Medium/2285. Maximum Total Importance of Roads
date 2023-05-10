@@ -1,0 +1,26 @@
+class Solution {
+   // 1. use map to detdrimine counts of roads 
+    // 2. count roads of cities and collect it to priority queue
+    // 3. give max n to element in queue which came first 
+    // 4. return result 
+    
+    public long maximumImportance(int n, int[][] roads) {
+        long res = 0;
+        int currentN = n;
+        Map<Integer, Long> map = new HashMap<>();
+        PriorityQueue<Long> queue = new PriorityQueue<>(Comparator.comparingLong(o->-o));
+        
+        for(int[] arr: roads){
+            map.put(arr[0], map.getOrDefault(arr[0], 0l)+1);
+            map.put(arr[1], map.getOrDefault(arr[1], 0l)+1);
+        }
+        
+        for(int key: map.keySet())
+            queue.add(map.get(key));
+        
+        while(!queue.isEmpty())
+           res += queue.remove() * currentN--; 
+           
+        return res;
+    }
+}
