@@ -1,0 +1,36 @@
+class Solution {
+    
+    // 0 -  declate variables 
+    // 1 -  sort matrix 
+    // 2 - drive bus and check every busstop 
+    // 3 - return result 
+    
+   public boolean carPooling(int[][] trips, int capacity) {
+        // phase - 0
+        PriorityQueue<int[]> priorityQueue =
+                new PriorityQueue<>(Comparator.comparingInt(o -> o[2]));
+
+        // phase - 1
+        Arrays.sort(trips, Comparator.comparingInt(o -> o[1]));
+
+        // phase - 2
+        for (int[] k : trips) {
+            capacity -= k[0];
+            priorityQueue.add(k);
+            
+            while (!priorityQueue.isEmpty()) {
+                var currentTrip = priorityQueue.peek();
+                if (currentTrip[2] <= k[1]) {
+                    capacity += currentTrip[0];
+                    priorityQueue.poll();
+                } else break;
+            }
+
+            if (capacity < 0)
+                return false;
+        }
+
+        // phase - 3
+        return true;
+    }
+}
