@@ -1,0 +1,31 @@
+class Solution {
+ public static int[] rearrangeBarcodes(int[] barcodes) {
+        int n =  barcodes.length, k = -2, p = -1;
+        int[] res = new int[n];
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list;
+
+        if(n == 1) return barcodes;
+
+        for(int i = 0; i < n; i++)
+            map.put(barcodes[i], map.getOrDefault(barcodes[i], 0)+1);
+
+        list = Arrays.stream(barcodes).boxed().collect(Collectors.toList());
+        list.sort((n1, n2) -> !Objects.equals(map.get(n2), map.get(n1)) ?  map.get(n2) - map.get(n1) : n1 - n2);
+
+        while(p < n){
+            k += 2;
+            p++;
+            res[k] = list.get(p);
+
+            if( k == n-1 || k == n-2){
+                if(p == n-1)
+                    break;
+                else
+                    k = -1;
+            }
+        }
+        
+        return res;
+    }
+}
