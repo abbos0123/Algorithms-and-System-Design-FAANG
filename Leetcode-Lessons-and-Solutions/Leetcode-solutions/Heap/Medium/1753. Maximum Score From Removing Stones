@@ -1,0 +1,29 @@
+------------------------------------------Complexity--------------------------------
+Time complexity:O(n)
+Space complexity:O(1)
+---------------------------------------------Code-----------------------------------
+class Solution {
+    public int maximumScore(int a, int b, int c) {
+        Queue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        int score = 0;
+       
+        pq.add(a);
+        pq.add(b);
+        pq.add(c);
+
+        while (pq.size() > 1){
+            int elem = pq.poll();
+            int elem2 = pq.poll();
+
+            if(pq.isEmpty())
+                return score + elem2;
+            if (elem > 1)
+                pq.add(elem-1);
+            if (elem2 > 1)
+                pq.add(elem2-1);
+            score++;
+        }
+
+        return score;
+    }
+}
