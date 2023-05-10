@@ -1,0 +1,23 @@
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        Map<String,Integer> freq = new HashMap<>();
+        for(String word:words){
+            freq.put(word,freq.getOrDefault(word,0)+1);
+        }
+        
+        PriorityQueue<String> queue = new PriorityQueue<>((s1,s2)->freq.get(s1)==freq.get(s2)?s2.compareTo(s1):freq.get(s1)-freq.get(s2));
+        
+        for(String word:freq.keySet()){
+            queue.offer(word);
+            if(queue.size()>k){
+                queue.poll();
+            }
+        }
+        List<String> list = new ArrayList<>();
+        while(!queue.isEmpty()){
+            list.add(queue.poll());
+        }
+        Collections.reverse(list);
+        return list;
+    }
+}
