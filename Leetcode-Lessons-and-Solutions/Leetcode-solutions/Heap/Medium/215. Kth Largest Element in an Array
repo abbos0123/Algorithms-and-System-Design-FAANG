@@ -1,0 +1,23 @@
+class Solution {
+     public int findKthLargest(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums)
+            if (!map.containsKey(num))
+                map.put(num, 1);
+            else
+                map.put(num, map.get(num) + 1);
+
+        for (int i = 10_000; i >= -10_000; i--) {
+            if (map.containsKey(i)){
+                var t = map.get(i);
+                 k -= t;
+
+                 if (k <= 0)
+                     return i;
+            }
+        }
+
+        return 0;
+    }
+}
