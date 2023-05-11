@@ -1,0 +1,22 @@
+---------------------------------------------Complexity-----------------------------------
+Time complexity: O(n^2)
+Space complexity:O(n)
+
+------------------------------------------------Code--------------------------------------
+class Solution {
+    public int minStoneSum(int[] piles, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        int sum = 0;
+
+        for(int pile : piles)
+           pq.add(pile);
+        
+        for(int i = 0; i < k; i++)
+            pq.add((pq.poll()+1)/2);
+       
+        while(!pq.isEmpty())
+           sum += pq.poll();
+        
+        return sum;
+    }
+}
